@@ -1,12 +1,120 @@
-<section>
-    <div class="label">SEIKO</div>
-    <div class="hourhand"></div>
-    <div class="secondhand"></div>
-    <div class="minutehand"></div>
-    <div class="hour12"></div>
-    <div class="hour1"></div>
-    <div class="hour2"></div>
-    <div class="hour3"></div>
-    <div class="hour4"></div>
-    <div class="hour5"></div>
-</section>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Tick Tock Clock</title>
+</head>
+
+<body>
+
+
+  <div class="clock">
+    <div class="clock-face">
+      <div class="hand hour-hand"></div>
+      <div class="hand min-hand"></div>
+      <div class="hand second-hand"></div>
+    </div>
+  </div>
+
+
+  <style>
+    html {
+      background: pink;
+      background-size: cover;
+      font-family: 'helvetica neue';
+      text-align: center;
+      font-size: 10px;
+    }
+
+    body {
+      margin: 0;
+      font-size: 3rem;
+      display: flex;
+      flex: 1;
+      min-height: 100vh;
+      align-items: center;
+    }
+
+    .clock {
+      width: 30rem;
+      height: 30rem;
+      border: 20px solid black;
+      border-radius: 50%;
+      margin: 50px auto;
+      position: relative;
+      padding: 2rem;
+    }
+
+    .clock-face {
+      position: relative;
+      display: flex;
+      width: 100%;
+      height: 100%;
+      transform: translateY(-3px);
+    }
+
+    .hand {
+      width: 50%;
+      right: 50%;
+      height: 6px;
+      background: #000408;
+      position: absolute;
+      top: 50%;
+      border-radius: 6px;
+      transform: rotate(90deg);
+      transform-origin: 100%;
+      transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
+    }
+
+    .hand.hour-hand {
+      width: 30%;
+      z-index: 3;
+    }
+
+    .hand.min-hand {
+      height: 3px;
+      z-index: 10;
+      width: 35%;
+    }
+
+    .hand.second-hand {
+      width: 45%;
+      height: 2px;
+    }
+  </style>
+
+  <script>
+    function drawClock() {
+     
+      var currentTime = new Date();
+      var hour = currentTime.getHours();
+      var minute = currentTime.getMinutes();
+      var second = currentTime.getSeconds();
+      console.log(minute)
+
+  
+      var hourAngle = ((hour%12) * 30) + (minute / 2);
+      var minuteAngle = (minute * 6) + (second / 10);
+      var secondAngle = second * 6;
+
+      
+      var hourHand = document.querySelector('.hour-hand');
+      var minuteHand = document.querySelector('.min-hand');
+      var secondHand = document.querySelector('.second-hand');
+
+    
+      hourHand.style.transform = `rotate(${90+hourAngle}deg)`;
+      minuteHand.style.transform = `rotate(${90+minuteAngle}deg)`;
+      secondHand.style.transform = `rotate(${90+secondAngle}deg)`;
+
+      
+      setTimeout(drawClock, 1000);
+    }
+
+    
+    window.addEventListener('DOMContentLoaded', drawClock);
+  </script>
+</body>
+
+</html>
