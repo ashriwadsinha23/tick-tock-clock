@@ -1,0 +1,38 @@
+.main{
+    align-items: center;
+    background: lightblue;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    top:25%;
+    left:30%;
+    border-radius: 50%;
+    width: 500px;
+    height:500px;
+}
+
+.second{
+    height:440px;
+    width:3px;
+    position: relative;
+    /* align-items: center; */
+    /* display: flex; */   
+    align-items: center;
+    background: -webkit-linear-gradient(top, lightblue 48%, black 52%); 
+}
+.minute{
+    position: relative;
+    /* align-items: center; */
+    /* display: flex; */
+    height:400px;
+    width:3px;
+    background: -webkit-linear-gradient(top, lightblue 48%, black 52%);
+}
+.hour{
+    position: relative;
+    /* align-items: center; */
+    /* display: flex; */
+    height:200px;
+    width:3px;
+    background: -webkit-linear-gradient(top, lightblue 48%, black 52%);
+}
