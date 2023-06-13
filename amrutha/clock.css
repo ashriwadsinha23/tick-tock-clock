@@ -1,0 +1,85 @@
+.hand {
+  position: absolute;
+  background-color: #333;
+  transform-origin: bottom center;
+}
+
+.hour-hand {
+  width: 8px;
+  height: 90px;
+  top: 50%;
+  left: 50%;
+  margin-top: -90px;
+  margin-left: -4px;
+  border-radius: 4px 4px 0 0;
+}
+
+.minute-hand {
+  width: 6px;
+  height: 120px;
+  top: 50%;
+  left: 50%;
+  margin-top: -120px;
+  margin-left: -3px;
+  border-radius: 4px 4px 0 0;
+}
+
+.second-hand {
+  width: 4px;
+  height: 135px;
+  top: 50%;
+  left: 50%;
+  margin-top: -135px;
+  margin-left: -2px;
+  border-radius: 4px 4px 0 0;
+  background-color: red;
+}
+
+.center-dot {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;                                           background-color: #333;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  background-color: #333;
+}
+
+.numbers .number {
+  position: absolute;
+  height: 0.5em;
+  width: 0.5em;
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.numbers .twelve {
+  top: 0.25em;
+  right: 47%;
+  bottom: 95%;
+  left: 47%;
+}
+
+.numbers .three {
+  top: 48%;
+  right: 0%;
+  bottom: 48%;
+  left: 94%;
+}
+
+.numbers .six {
+  top: 95%;
+  right: 47%;
+  bottom: 1em;
+  left: 48%;
+}
+
+.numbers .nine {
+  top: 48%;
+  right: 0%;
+  bottom: 48%;
+  left: 0%;
+}
