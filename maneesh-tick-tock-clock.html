@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Tick-Tock Clock</title>
+    <link rel="icon" href="https://fav.farm/🔥" />
+  </head>
+
+  <body>
+    <div class="clock">
+      <div class="clock-face">
+        <div class="hand hour-hand" id="hour"></div>
+        <div class="hand minute-hand" id="minute"></div>
+        <div class="hand second-hand" id="second"></div>
+      </div>
+    </div>
+    <div class="digital" id="digital">digiClock</div>
+
+    <style>
+      html {
+        background: #018ded url(https://unsplash.it/1500/1000?image=881&blur=5);
+        background-size: cover;
+        font-family: "helvetica neue";
+        text-align: center;
+        font-size: 10px;
+      }
+
+      body {
+        margin: 0;
+        font-size: 2rem;
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        min-height: 100vh;
+        align-items: center;
+      }
+
+      .clock {
+        width: 30rem;
+        height: 30rem;
+        border: 20px solid white;
+        border-radius: 50%;
+        margin: 50px auto;
+        position: relative;
+        padding: 2rem;
+        box-shadow: 0 0 0 4px rgba(0, 0, 0, 0.1), inset 0 0 0 3px #efefef,
+          inset 0 0 10px black, 0 0 10px rgba(0, 0, 0, 0.2);
+      }
+
+      .clock-face {
+        position: relative;
+        display: flex;
+        width: 100%;
+        height: 100%;
+        transform: translateY(-3px);
+        /* account for the height of the clock hands */
+      }
+      .clock-face::after {
+        content: "";
+        position: absolute;
+        background-color: black;
+        border: 1px solid white;
+        z-index: 11;
+        width: 15px;
+        height: 15px;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        border-radius: 50%;
+      }
+      .hand {
+        border: 1px solid white;
+        border-radius: 20px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        --rotation: -90;
+        transform: translateY(-50%) rotate(calc(var(--rotation) * 1deg));
+        transform-origin: left;
+      }
+      .hour-hand {
+        width: 35%;
+        height: 6px;
+        background: black;
+        --rotation: 30;
+      }
+      .minute-hand {
+        width: 45%;
+        height: 6px;
+        background: black;
+        --rotation: 60;
+      }
+      .second-hand {
+        width: 50%;
+        height: 1px;
+        background: red;
+      }
+      .digital {
+        /* border: 2px solid black; */
+        width: 300px;
+        height: auto;
+        padding: 2px;
+        margin: 1% auto 0% auto;
+        text-align: center;
+        color: white;
+        font-size: 1.5em;
+        border-radius: 20px;
+        /* background-color: rgba(255, 255, 255, 0.8); */
+        box-shadow: 0 0 0 4px rgba(0, 0, 0, 0.1), inset 0 0 0 3px #efefef,
+          inset 0 0 10px black, 0 0 10px rgba(0, 0, 0, 0.2);
+      }
+    </style>
+
+    <script>
+      setInterval(() => {
+        const hourHand = document.getElementById("hour");
+        const minuteHand = document.getElementById("minute");
+        const secondHand = document.getElementById("second");
+        const currentDate = new Date();
+        const secondsRatio = currentDate.getSeconds() / 60;
+        const minutesRatio = (secondsRatio + currentDate.getMinutes()) / 60;
+        const hoursRatio = (minutesRatio + currentDate.getHours()) / 12;
+        hourHand.style.setProperty("--rotation", hoursRatio * 360 - 90);
+        minuteHand.style.setProperty("--rotation", minutesRatio * 360 - 90);
+        secondHand.style.setProperty("--rotation", secondsRatio * 360 - 90);
+
+        digiClock = document.getElementById("digital");
+        digiClock.innerHTML = currentDate.toLocaleString("en-US", {
+          hour: "numeric",
+          minute: "numeric",
+          hour12: true,
+          second: "numeric",
+        });
+      }, 1000);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<style>
+	
+		#Container {
+	position: relative;
+	margin: auto;	
+	height: 60vw;
+	width: 60vw;
+	background: url(clock.jpg) no-repeat;
+	background-size: 100%;
+	/* background-color: black; */
+}
+
+#hour,
+#minute,
+#second {
+	position: absolute;
+	background: cyan;
+	border-radius: 20px;
+	transform-origin: bottom;
+}
+
+#hour {
+	width: 1.8%;
+	height: 25%;
+	top: 25%;
+	left: 48.85%;
+	opacity: 0.8;
+}
+
+#minute {
+	width: 1.6%;
+	height: 30%;
+	top: 19%;
+	left: 48.9%;
+	opacity: 0.8;
+}
+
+#second {
+	width: 1%;
+	height: 40%;
+	top: 9%;
+	left: 49.25%;
+	opacity: 0.8;
+}
+
+	</style>
+	<script>
+		setInterval(() => {
+	d = new Date();
+	hr = d.getHours();
+	min = d.getMinutes();
+	sec = d.getSeconds();
+	hrRotate = 30 * hr + min / 2;
+	minRotate = 6 * min;
+	secRotate = 6 * sec;
+
+	hour.style.transform = `rotate(${hrRotate}deg)`;
+	minute.style.transform = `rotate(${minRotate}deg)`;
+	second.style.transform = `rotate(${secRotate}deg)`;
+}, 1000);
+
+	</script>
+</head>
+<body>
+	<div id="Container">
+		<div id="hour"></div>
+		<div id="minute"></div>
+		<div id="second"></div>
+	</div>
+</body>
+</html>

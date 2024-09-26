@@ -1,0 +1,48 @@
+body{
+    background-color: aqua;
+}
+
+h1{
+    text-align: center;
+}
+
+#clock{
+    position: relative;
+    margin: auto;
+    height: 40vw;
+    width: 40vw;
+    background: url(https://t4.ftcdn.net/jpg/02/98/05/53/360_F_298055389_jrEg3HMHIqRvawhQrkL4H2kTS1AaU324.jpg) no-repeat;
+    background-size: 100%;
+}
+
+#hour,#minute, #second{
+    position: absolute;
+    background: black;
+    border-radius: 10px;
+    transform-origin: bottom;
+}
+
+#hour{
+    width: 2.4%;
+    height: 25%;
+    top: 25%;
+    left: 48.85%;
+    opacity: 0.8;
+}
+
+#minute{
+    width: 1.6%;
+    height: 30%;
+    top: 19%;
+    left: 48.9%;
+    opacity: 0..8;
+}
+
+#second{
+    width: 1%;
+    height: 40%;
+    top: 9%;
+    left: 49.25%;
+    opacity: 0.8;
+}
+

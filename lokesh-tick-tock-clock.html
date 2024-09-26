@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Tick-Tock Clock</title>
+    <link rel="icon" href="https://fav.farm/🔥" />
+  </head>
+
+  <body>
+    <div class="clock">
+      <div class="clock-face">
+        <div class="dot"></div>
+        <div class="hand hour-hand" id="hour"></div>
+        <div class="hand minute-hand" id="minute"></div>
+        <div class="hand second-hand" id="second"></div>
+        <div class="date" id="month">JAN</div>
+        <div class="date" id="date">21</div>
+        <div class="date" id="day">TUE</div>
+      </div>
+    </div>
+
+    <style>
+      html {
+        background: #018ded url(https://unsplash.it/1500/1000?image=881&blur=5);
+        background-size: cover;
+        font-family: "helvetica neue";
+        text-align: center;
+        font-size: 10px;
+      }
+
+      body {
+        margin: 0;
+        font-size: 2rem;
+        display: flex;
+        flex: 1;
+        min-height: 100vh;
+        align-items: center;
+      }
+
+      .clock {
+        width: 30rem;
+        height: 30rem;
+        border: 10px solid white;
+        border-radius: 50%;
+        margin: 50px auto;
+        position: relative;
+        padding: 2rem;
+        box-shadow: 0 0 0 4px rgba(0, 0, 0, 0.1), inset 0 0 0 3px #efefef,
+          inset 0 0 10px black, 0 0 10px rgba(0, 0, 0, 0.2);
+      }
+
+      .clock-face {
+        position: relative;
+        display: flex;
+        width: 100%;
+        height: 100%;
+        transform: translateY(-3px);
+        /* account for the height of the clock hands */
+      }
+      .hand {
+        --rotation: 0;
+
+        /* border-radius: 20px; */
+        border: 1px solid white;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform-origin: left;
+      }
+      .hour-hand {
+        transform: rotate(calc(var(--rotation) * 1deg));
+        background-color: black;
+        width: 35%;
+        height: 8px;
+      }
+      .minute-hand {
+        transform: rotate(calc(var(--rotation) * 1deg));
+        background-color: white;
+        width: 45%;
+        height: 6px;
+      }
+      .second-hand {
+        transform: rotate(calc(var(--rotation) * 1deg));
+        background-color: cyan;
+        width: 50%;
+        height: 2px;
+      }
+      .date {
+        position: relative;
+        left: 60%;
+        top: 48%;
+        background-color: white;
+        height: fit-content;
+        z-index: -12;
+        border: 1px solid black;
+        padding: 2px;
+        font-size: 0.8em;
+        margin-right: 2px;
+      }
+      .dot {
+        height: 20px;
+        width: 20px;
+        background-color: rgb(35, 140, 210);
+        position: relative;
+        left: 50%;
+        top: 52%;
+        transform: translate(-50%, -50%);
+        border-radius: 50%;
+        z-index: 15;
+        border: 2px solid white;
+      }
+    </style>
+
+    <script>
+      setInterval(() => {
+        const hourHand = document.getElementById("hour");
+        const minuteHand = document.getElementById("minute");
+        const secondHand = document.getElementById("second");
+        const month = document.getElementById("month");
+        const date = document.getElementById("date");
+        const day = document.getElementById("day");
+        const currentDate = new Date();
+        const secondsRatio = currentDate.getSeconds() / 60;
+        const minutesRatio = (secondsRatio + currentDate.getMinutes()) / 60;
+        const hoursRatio = (minutesRatio + currentDate.getHours()) / 12;
+        hourHand.style.setProperty("--rotation", hoursRatio * 360 - 90);
+        minuteHand.style.setProperty("--rotation", minutesRatio * 360 - 90);
+        secondHand.style.setProperty("--rotation", secondsRatio * 360 - 90);
+
+        month.innerHTML = currentDate
+          .toLocaleString("default", { month: "long" })
+          .slice(0, 3)
+          .toUpperCase();
+        date.innerHTML = currentDate.getDate();
+        day.innerHTML = currentDate
+          .toLocaleString("default", { weekday: "long" })
+          .slice(0, 3)
+          .toUpperCase();
+      }, 1000);
+    </script>
+  </body>
+</html>
